@@ -57,8 +57,3 @@ const UserModal = ({ isOpen, onClose, user }: { isOpen: boolean, onClose: () => 
   };
   
   export default UserModal;
-
-function fetchHackathonsForUser() {
-    throw new Error("Function not implemented.");
-}
-  
