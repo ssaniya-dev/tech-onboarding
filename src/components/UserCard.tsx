@@ -4,7 +4,8 @@ import {
   HStack,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
+import UserModal from "./UserModal";
 
 type Props = {
   user: any;
@@ -24,7 +25,10 @@ type Props = {
 // and the /hexathons endpoint of the hexathons service to get a list of all the hexathons.
 
 const UserCard: React.FC<Props> = (props: Props) => {
-
+  const [isOpen, setIsOpen] = useState(false);
+  const onClose = () => setIsOpen(false);
+  const onOpen = () => setIsOpen(true);
+  
   return (
     <Box
     borderWidth="1px"
@@ -33,6 +37,8 @@ const UserCard: React.FC<Props> = (props: Props) => {
     height="175px"
     fontWeight="bold"
     alignItems="center"
+    onClick={onOpen} 
+    cursor="pointer" 
     >
       <Flex padding="2" flexDirection="column">
         <HStack align="flex-end" justify="space-between">
@@ -47,7 +53,9 @@ const UserCard: React.FC<Props> = (props: Props) => {
           {props.user.email}
         </Text>
       </Flex>
+      <UserModal isOpen={isOpen} onClose={onClose} user={props.user} />
     </Box>
+    
   );
 };
 
